@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import Home from './pages/Home';
+import Catalog from './pages/Catalog';
+import Cart from './pages/Cart';
+import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
+import AboutUs from './pages/AboutUs';
+import RepareAndPers from './pages/RepareAndPers';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main className="container py-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/carrito" element={<Cart />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registration />} />
+          <Route path="/quienes-somos" element={<AboutUs />} />
+          <Route path="/personalizacion-reparacion" element={<RepareAndPers />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 }
-
-export default App;
