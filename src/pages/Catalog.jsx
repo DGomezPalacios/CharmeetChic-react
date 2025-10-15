@@ -1,3 +1,8 @@
+import arosCora from '../assets/img/Aros Corazon.jpg';
+
+
+
+
 export default function Catalog() {
     return (
         <div className="catalogo">
@@ -8,7 +13,7 @@ export default function Catalog() {
                 <summary>Aros</summary>
                 <div className="productos">
                     <div className="producto">
-                        <img src="/img/Aros Corazon.jpg" alt="Aros Corazones" />
+                        <img src={arosCora} alt="Aros Corazones" />
                         <p className="nombre">Aros de Corazones</p>
                         <p className="precio">$8.000</p>
                         <button>Añadir al carrito</button>
