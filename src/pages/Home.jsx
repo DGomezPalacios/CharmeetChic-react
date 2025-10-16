@@ -6,6 +6,8 @@ export default function Home() {
             <h2>Bienvenidos a nuestra tienda</h2>
             <p>Joyería artesanal, personalización y reparación con cariño y detalle.</p>
             <img src={collarCorazon} alt="Joyería exclusiva" />
+
+
         </section>
     );
 }

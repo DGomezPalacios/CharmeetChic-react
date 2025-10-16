@@ -1,6 +1,5 @@
 import taller from '../assets/img/taller.png';
 
-
 export default function AboutUs() {
     return (
         <div className="seccion">
