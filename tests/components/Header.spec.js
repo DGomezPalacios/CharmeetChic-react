@@ -15,12 +15,12 @@ describe('Header', () => {
   it('renderiza el logo con el enlace al inicio', () => {
     renderHeader('/');
 
-    // Busca el logo
+    // busca el logo
     const logo = screen.queryByAltText(/Charme et Chic/i);
     expect(logo).not.toBeNull();
     expect(logo.getAttribute('src')).toMatch(/(mock-image|data:image)/);
 
-    // Verifica que esté dentro del contenedor principal de la marca
+    // verifica que está dentro del navbar
     const brand = logo.closest('.navbar-brand');
     expect(brand).not.toBeNull();
   });
