@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
-import NavBar from './NavBar';
+import NavBar from '../../src/components/NavBar';
 
 function renderNav(initialPath = '/') {
     return render(

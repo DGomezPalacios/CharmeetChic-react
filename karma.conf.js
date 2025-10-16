@@ -4,15 +4,15 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
         files: [
             { pattern: 'tests/setup-jasmine.js', watched: false },
-            { pattern: 'src/**/*.spec.jsx', watched: false },
-            { pattern: 'src/**/*.spec.js', watched: false }
+            { pattern: 'tests/**/*.spec.jsx', watched: false },
+            { pattern: 'tests/**/*.spec.js', watched: false }
 
         ],
         preprocessors: {
             'tests/setup-jasmine.js': ['esbuild'],
-            'src/**/*.spec.jsx': ['esbuild'],
-            'src/**/*.spec.js': ['esbuild']
-
+            'tests/**/*.spec.jsx': ['esbuild'],
+            'tests/**/*.spec.js': ['esbuild']
+            
         },
         esbuild: {
             jsx: 'automatic',
