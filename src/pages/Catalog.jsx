@@ -1,5 +1,3 @@
-import React from 'react';
-
 // aros
 import arosCorazon from '../assets/img/Aros Corazon.jpg';
 import aroLargo from '../assets/img/Aro largo.jpg';

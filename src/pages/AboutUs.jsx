@@ -1,3 +1,5 @@
+import taller from '../assets/img/taller.png';
+
 export default function AboutUs() {
     return (
         <div className="seccion">
@@ -15,7 +17,7 @@ export default function AboutUs() {
                 Nuestro equipo está comprometido con ofrecer un servicio cercano y de calidad,
                 acompañando a nuestros clientes en cada momento especial con piezas que perduran.
             </p>
-            <img src="/img/taller.png" alt="Taller Charme et Chic" />
+            <img src={taller} alt="Taller Charme et Chic" />
         </div>
     );
 }
