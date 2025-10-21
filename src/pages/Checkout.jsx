@@ -68,7 +68,7 @@ export default function Checkout() {
       <h2 className="titulo-seccion text-center mb-4">Finalizar Compra</h2>
 
       <div className="row justify-content-center">
-        {/* Formulario cliente y dirección */}
+        {/* Formulario cliente */}
         <div className="col-md-6">
           <div className="card shadow p-4">
             <h4 className="mb-3">Datos del cliente</h4>

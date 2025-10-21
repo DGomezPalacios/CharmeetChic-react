@@ -1,4 +1,3 @@
-// src/pages/Catalog.jsx
 import { useCart } from "../context/CartContext";
 
 // Aros
