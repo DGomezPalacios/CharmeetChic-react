@@ -10,6 +10,9 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import AboutUs from './pages/AboutUs';
 import RepareAndPers from './pages/RepareAndPers';
+import Checkout from './pages/Checkout';  
+import Success from './pages/Success';     
+import Fail from './pages/Fail';          
 
 export default function App() {
   return (
@@ -20,6 +23,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
           <Route path="/carrito" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />  
+          <Route path="/success" element={<Success />} />   
+          <Route path="/fail" element={<Fail />} />          
           <Route path="/contacto" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registration />} />

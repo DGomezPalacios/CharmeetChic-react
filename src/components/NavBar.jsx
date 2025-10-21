@@ -1,3 +1,5 @@
+import { useCart } from "../context/CartContext";
+
 import { NavLink, Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -12,6 +14,9 @@ import carrito from "../assets/img/carrito-de-compras.png";
 export default function NavBar() {
     const active = ({ isActive }) =>
         "nav-link fw-semibold" + (isActive ? " active" : "");
+    const { cart } = useCart();
+    const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+
 
     return (
         <>
@@ -52,9 +57,24 @@ export default function NavBar() {
                         <img src={buscar} alt="" width="20" height="20" />
                     </Button>
 
-                    <Nav.Link as={Link} to="/carrito" title="Carrito" aria-label="Carrito">
+                    <Nav.Link
+                        as={Link}
+                        to="/carrito"
+                        title="Carrito"
+                        aria-label="Carrito"
+                        className="position-relative"
+                    >
                         <img src={carrito} alt="" width="20" height="20" />
+                        {totalItems > 0 && (
+                        <span
+                            className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            style={{ fontSize: "0.6rem" }}
+                        >
+                            {totalItems}
+                        </span>
+                        )}
                     </Nav.Link>
+
                 </Nav>
             </Navbar.Collapse>
         </>
