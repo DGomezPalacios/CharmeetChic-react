@@ -23,12 +23,15 @@ Permite explorar productos, agregarlos al carrito de compras, simular procesos d
    git clone https://github.com/DGomezPalacios/CharmeetChic-react
 
 2. Entrar en el directorio del proyecto:
+   ```bash
     cd charme-et-chic-react
 
 3. Instalar dependencias:
+    ```bash
     npm install
 
 4. Iniciar la aplicación:
+    ```bash
     npm start
 
 
