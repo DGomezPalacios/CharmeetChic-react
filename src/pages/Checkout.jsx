@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
@@ -37,7 +37,6 @@ export default function Checkout() {
       return;
     }
 
-    // Preparar datos del cliente
     const customerData = {
       nombre: formData.nombre,
       apellidos: formData.apellidos,
@@ -51,7 +50,6 @@ export default function Checkout() {
       indicaciones: formData.indicaciones,
     };
 
-    // Navegar a Success con todos los datos
     navigate("/success", {
       state: {
         cart,
@@ -106,7 +104,7 @@ export default function Checkout() {
                   required
                 />
               </div>
-                <div className="mb-3">
+              <div className="mb-3">
                 <label className="form-label">Teléfono de contacto</label>
                 <input
                   type="tel"
@@ -125,7 +123,7 @@ export default function Checkout() {
                   type="text"
                   name="direccion"
                   className="form-control"
-                  value={formData.calle}
+                  value={formData.direccion}
                   onChange={handleChange}
                   required
                 />
@@ -174,7 +172,9 @@ export default function Checkout() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Indicaciones para la entrega (opcional)</label>
+                <label className="form-label">
+                  Indicaciones para la entrega (opcional)
+                </label>
                 <textarea
                   name="indicaciones"
                   className="form-control"
@@ -207,9 +207,13 @@ export default function Checkout() {
                     >
                       <div>
                         <strong>{item.name}</strong> <br />
-                        <small>{item.qty} x ${item.price.toLocaleString()}</small>
+                        <small>
+                          {item.qty} x ${item.price.toLocaleString()}
+                        </small>
                       </div>
-                      <strong>${(item.price * item.qty).toLocaleString()}</strong>
+                      <strong>
+                        ${ (item.price * item.qty).toLocaleString() }
+                      </strong>
                     </li>
                   ))}
                 </ul>
