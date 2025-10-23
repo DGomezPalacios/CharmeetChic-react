@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Proyecto Frontend – Charme et Chic
+## Asignatura: DSY1104 Desarrollo Fullstack II
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
+Charme et Chic es una aplicación web desarrollada en React para la gestión y venta de joyería.  
+Permite explorar productos, agregarlos al carrito de compras, simular procesos de pago y acceder a un panel administrativo para gestionar usuarios, pedidos y catálogo.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Tecnologías utilizadas
+- React
+- Bootstrap 
+- ESBuild  
+- Karma + Jasmine + Testing Library (para pruebas unitarias)  
+- Node.js y npm
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalación y ejecución
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/DGomezPalacios/CharmeetChic-react
 
-### `npm test`
+2. Entrar en el directorio del proyecto:
+    cd charme-et-chic-react
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Instalar dependencias:
+    npm install
 
-### `npm run build`
+4. Iniciar la aplicación:
+    npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+La pagina se abrirá en http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Ejecución de pruebas:
+Para ejecutar las pruebas unitarias del proyecto:
+npm run test:karma
 
-### `npm run eject`
+Esto abrirá ChromeHeadless y ejecutará los tests definidos en la carpeta tests/, mostrando los resultados en la consola con el reporter spec.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Pruebas incluidas:
+- Header: estructura, clases y NavBar.
+- NavBar: enlaces, estados activos y acción de búsqueda.
+- CartContext: agregar, eliminar, limpiar y actualizar productos.
+- Cart Page: renderizado del carrito y mensajes condicionales.
+- Checkout: renderizado de la página de pago.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Funcionalidades principales:
+- Catálogo de productos: visualización y navegación por categorías.
+- Carrito de compras: agregar, actualizar y eliminar productos.
+- Checkout simulado: proceso de compra con vistas de éxito y error.
+- Panel administrativo: administración de usuarios, pedidos y productos.
+- Navegación dinámica: rutas gestionadas con React Router DOM.
+- Pruebas unitarias: verificación de componentes principales.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Autoras:
+- Daniela Gómez Palacios
+- Berta Soto Jerez
