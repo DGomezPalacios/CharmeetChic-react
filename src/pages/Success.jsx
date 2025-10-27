@@ -12,14 +12,16 @@ export default function Success() {
   const purchasedTotal = state?.total || 0;
   const customer = state?.customer || {};
 
+  // limpia el carrito luego de la compra
   useEffect(() => {
-    clearCart();
+    const timer = setTimeout(() => clearCart(), 100);
+    return () => clearTimeout(timer);
   }, [clearCart]);
 
   return (
     <main style={{ textAlign: "center", marginTop: "60px" }}>
       <span style={{ fontSize: "60px" }}>✅</span>
-      <h2>¡Compra realizada con éxito!</h2>
+      <h2>¡Compra exitosa!</h2>
       <p>Gracias por tu compra. Tu pedido está siendo procesado.</p>
 
       <div style={{ maxWidth: "500px", margin: "30px auto", textAlign: "left" }}>
@@ -71,7 +73,9 @@ export default function Success() {
         )}
       </div>
 
-      <Link className="btn btn-primary mt-3" to="/catalogo">Volver al catálogo</Link>
+      <Link to="/catalogo" className="btn btn-outline-dark mt-4">
+        ← Volver al catálogo
+      </Link>
     </main>
   );
 }
