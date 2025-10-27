@@ -18,7 +18,7 @@ function renderNav(initialPath = "/") {
 }
 
 describe("NavBar", () => {
-  it("renderiza todas las opciones del menú", () => {
+  it("Mostrar todas las opciones del menú", () => {
     renderNav("/");
 
     expect(screen.queryByRole("link", { name: /Inicio/i })).not.toBeNull();

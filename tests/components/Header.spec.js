@@ -14,7 +14,7 @@ function renderHeader(initialPath = "/") {
 }
 
 describe("Header", () => {
-  it("renderiza el logo con el enlace al inicio", () => {
+  it("Mostrar el logo con el enlace al inicio", () => {
     renderHeader("/");
 
     const logo = screen.queryByAltText(/Charme et Chic/i);
