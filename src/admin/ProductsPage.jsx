@@ -4,7 +4,7 @@ import {
   crearProducto,
   actualizarProducto,
   eliminarProducto,
-} from "../../api/productos";
+} from "../api/productos"; // 👈 ojo: ../api/...
 
 export default function ProductsPage() {
   const [items, setItems] = useState([]);
@@ -25,8 +25,7 @@ export default function ProductsPage() {
     setErr(null);
     try {
       const data = await listarProductos();
-      // Backend usa español -> normalizamos a tu UI
-      const ui = data.map(p => ({
+      const ui = data.map((p) => ({
         id: p.id,
         name: p.nombre,
         price: p.precio,
@@ -43,7 +42,9 @@ export default function ProductsPage() {
     }
   };
 
-  useEffect(() => { cargar(); }, []);
+  useEffect(() => {
+    cargar();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -68,7 +69,7 @@ export default function ProductsPage() {
   }
 
   async function deleteItem(id) {
-    if (!confirm("¿Eliminar este producto?")) return;
+    if (!window.confirm("¿Eliminar este producto?")) return; // 👈 window.confirm
     try {
       await eliminarProducto(id);
       await cargar();
@@ -128,7 +129,7 @@ export default function ProductsPage() {
           <tr><th>Nombre</th><th>Precio</th><th>Stock</th><th>Categoría</th><th>Visible</th><th>Acciones</th></tr>
         </thead>
         <tbody>
-          {items.map(p => (
+          {items.map((p) => (
             <tr key={p.id}>
               <td>{p.name}</td>
               <td>${Number(p.price).toLocaleString()}</td>
