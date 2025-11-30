@@ -1,38 +1,47 @@
-import { api } from "./client";
+import { apiProductos } from "./clientProductos";
 
-// GET /api/productos
+// GET /productos
 export const listarProductos = async () => {
-  const { data } = await api.get("/api/productos");
+  const { data } = await apiProductos.get("/productos");
   return data;
 };
 
-// POST /api/productos
+// POST /productos
 export const crearProducto = async (form) => {
   const payload = {
-    nombre:   form.name,
-    precio:   Number(form.price),
-    stock:    Number(form.stock),
-    categoria: form.category,
-    visible:  Boolean(form.visible),
+    nombre: form.name,
+    descripcion: form.description || "",
+    precio: Number(form.price),
+    stock: Number(form.stock),
+    material: form.material || "",
+    peso: form.peso ? Number(form.peso) : null,
+    medidas: form.medidas || "",
+    categoriaId: Number(form.categoriaId),  // OBLIGATORIO
   };
-  const { data } = await api.post("/api/productos", payload);
+
+  const { data } = await apiProductos.post("/productos", payload);
   return data;
 };
 
-// PUT /api/productos/{id}
+// PUT /productos/{id}
 export const actualizarProducto = async (id, form) => {
   const payload = {
-    nombre:   form.name,
-    precio:   Number(form.price),
-    stock:    Number(form.stock),
-    categoria: form.category,
-    visible:  Boolean(form.visible),
+    nombre: form.name,
+    descripcion: form.description || "",
+    precio: Number(form.price),
+    stock: Number(form.stock),
+    material: form.material || "",
+    peso: form.peso ? Number(form.peso) : null,
+    medidas: form.medidas || "",
+    categoriaId: Number(form.categoriaId), // OBLIGATORIO
   };
-  const { data } = await api.put(`/api/productos/${id}`, payload);
+
+  const { data } =
+    await apiProductos.put(`/productos/${id}`, payload);
   return data;
 };
 
-// DELETE /api/productos/{id}
+// DELETE /productos/{id}
 export const eliminarProducto = async (id) => {
-  await api.delete(`/api/productos/${id}`);
+  await apiProductos.delete(`/productos/${id}`);
 };
