@@ -2,15 +2,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    "/productos",
-    createProxyMiddleware({
-      target: "http://localhost:8088",
-      changeOrigin: true,
-    })
-  );
-
-  app.use(
-    "/usuario",
+    "/api/usuario",
     createProxyMiddleware({
       target: "http://localhost:8090",
       changeOrigin: true,
@@ -18,7 +10,15 @@ module.exports = function (app) {
   );
 
   app.use(
-    "/compras",
+    "/api/productos",
+    createProxyMiddleware({
+      target: "http://localhost:8088",
+      changeOrigin: true,
+    })
+  );
+
+  app.use(
+    "/api/compras",
     createProxyMiddleware({
       target: "http://localhost:8083",
       changeOrigin: true,
@@ -26,7 +26,7 @@ module.exports = function (app) {
   );
 
   app.use(
-    "/categorias",
+    "/api/categorias",
     createProxyMiddleware({
       target: "http://localhost:8082",
       changeOrigin: true,
@@ -34,7 +34,7 @@ module.exports = function (app) {
   );
 
   app.use(
-    "/contacto",
+    "/api/contacto",
     createProxyMiddleware({
       target: "http://localhost:8091",
       changeOrigin: true,
