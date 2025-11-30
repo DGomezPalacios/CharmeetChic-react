@@ -1,34 +1,61 @@
 import { api } from "./client";
 
-// GET /api/usuario
+// ===============================
+//  LOGIN
+// ===============================
+export const loginUsuario = async (correo, contrasenia) => {
+  try {
+    const payload = { correo, contrasenia };
+    const { data } = await api.post("/api/usuario/login", payload);
+    return data;
+  } catch (err) {
+    throw new Error("Credenciales incorrectas");
+  }
+};
+
+// ===============================
+//  LISTAR USUARIOS
+// ===============================
 export const listarUsuarios = async () => {
   const { data } = await api.get("/api/usuario");
   return data;
 };
 
-// POST /api/usuario
+// ===============================
+//  CREAR USUARIO (ADMIN)
+// ===============================
 export const crearUsuario = async (form) => {
   const payload = {
     nombre: form.name,
-    email: form.email,
-    blocked: Boolean(form.blocked), // o "activo": !form.blocked, segun tu backend
+    apellido: "", // si no usas apellido
+    correo: form.email,
+    contrasenia: form.password ?? "123456",
+    rol: form.rol
   };
+
   const { data } = await api.post("/api/usuario", payload);
   return data;
 };
 
-// PUT /api/usuario/{id}
+// ===============================
+//  ACTUALIZAR USUARIO
+// ===============================
 export const actualizarUsuario = async (id, form) => {
   const payload = {
     nombre: form.name,
-    email: form.email,
-    blocked: Boolean(form.blocked),
+    apellido: "",
+    correo: form.email,
+    contrasenia: form.password ?? "123456",
+    rol: form.rol
   };
+
   const { data } = await api.put(`/api/usuario/${id}`, payload);
   return data;
 };
 
-// DELETE /api/usuario/{id}
+// ===============================
+//  ELIMINAR USUARIO
+// ===============================
 export const eliminarUsuario = async (id) => {
   await api.delete(`/api/usuario/${id}`);
 };

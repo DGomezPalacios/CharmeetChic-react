@@ -1,18 +1,37 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { loginUsuario } from "../api/usuario";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [msg, setMsg] = useState("");
+    const [showPass, setShowPass] = useState(false);
 
-    const onSubmit = (e) => {
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         setMsg("");
+
         if (!/^\S+@\S+\.\S+$/.test(email)) return setMsg("Correo inválido");
         if (pass.length < 6) return setMsg("La contraseña debe tener al menos 6 caracteres");
-        // aquí iría tu llamada a backend /api/login
-        setMsg("Login OK (simulado)");
+
+        try {
+            const user = await loginUsuario(email, pass);
+
+            // Guardar usuario en localStorage
+            localStorage.setItem("user", JSON.stringify(user));
+
+            // Redirección según rol
+            if (user.rol === "ADMIN") {
+                window.location.href = "/admin";
+            } else {
+                window.location.href = "/";
+            }
+
+        } catch (err) {
+            setMsg("Credenciales incorrectas");
+        }
     };
 
     return (
@@ -22,10 +41,37 @@ export default function Login() {
 
             <form id="formLogin" className="formulario-contacto" onSubmit={onSubmit} noValidate>
                 <label htmlFor="loginEmail">Correo Electrónico *</label>
-                <input id="loginEmail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input
+                    id="loginEmail"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
                 <label htmlFor="loginPass">Contraseña *</label>
-                <input id="loginPass" type="password" value={pass} onChange={(e) => setPass(e.target.value)} />
+                <div style={{ position: "relative" }}>
+  <input
+    id="loginPass"
+    type={showPass ? "text" : "password"}
+    value={pass}
+    onChange={(e) => setPass(e.target.value)}
+  />
+
+  <span
+    onClick={() => setShowPass(!showPass)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      color: "#666"
+    }}
+  >
+    {showPass ? "🙈" : "👁️"}
+  </span>
+</div>
+
 
                 <div className="inline remember-row">
                     <input id="remember" type="checkbox" />
@@ -33,6 +79,7 @@ export default function Login() {
                 </div>
 
                 <button type="submit" className="btn-primary">Acceder</button>
+
                 <p className="help" aria-live="polite">{msg}</p>
 
                 <p className="help" style={{ textAlign: "center", marginTop: 10 }}>

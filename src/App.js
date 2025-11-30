@@ -14,7 +14,7 @@ import Checkout from './pages/Checkout';
 import Success from './pages/Success';     
 import Fail from './pages/Fail';     
 import AdminApp from './admin/AdminApp';
-
+import ProtectedAdmin from './components/ProtectedAdmin';
 
 export default function App() {
   return (
@@ -22,6 +22,8 @@ export default function App() {
       <Header />
       <main className="container py-4">
         <Routes>
+
+          {/* Rutas públicas */}
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
           <Route path="/carrito" element={<Cart />} />
@@ -33,7 +35,17 @@ export default function App() {
           <Route path="/registro" element={<Registration />} />
           <Route path="/quienes-somos" element={<AboutUs />} />
           <Route path="/personalizacion-reparacion" element={<RepareAndPers />} />
-          <Route path="/admin/*" element={<AdminApp />} />
+
+          {/* RUTA ADMIN PROTEGIDA */}
+          <Route 
+            path="/admin/*" 
+            element={
+              <ProtectedAdmin>
+                <AdminApp />
+              </ProtectedAdmin>
+            } 
+          />
+
         </Routes>
       </main>
       <Footer />
