@@ -17,7 +17,7 @@ export default function UsersPage() {
     name: "",
     email: "",
     password: "",
-    rol: "CLIENTE",
+    rol: "COMPRADOR",
     blocked: false,
   });
 
@@ -61,7 +61,7 @@ export default function UsersPage() {
         name: "",
         email: "",
         password: "",
-        rol: "CLIENTE",
+        rol: "COMPRADOR",
         blocked: false,
       });
     } catch (e) {
@@ -129,7 +129,7 @@ export default function UsersPage() {
             onChange={(e) => setForm({ ...form, rol: e.target.value })}
           >
             <option value="ADMIN">Admin</option>
-            <option value="CLIENTE">Cliente</option>
+            <option value="COMPRADOR">Cliente</option>
             <option value="VENDEDOR">Vendedor</option>
           </select>
         </div>
