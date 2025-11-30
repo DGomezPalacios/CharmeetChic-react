@@ -24,7 +24,7 @@ export default function Login() {
 
             // Redirección según rol
             if (user.rol === "ADMIN") {
-                window.location.href = "/admin";
+                window.location.href = "/";
             } else {
                 window.location.href = "/";
             }
