@@ -4,6 +4,11 @@ import OrdersPage from "./OrdersPage";
 import UsersPage from "./UsersPage";
 
 function AdminLayout() {
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
   return (
     <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#faf9f6" }}>
       <aside
@@ -17,13 +22,13 @@ function AdminLayout() {
           padding: "2rem 1rem",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
         }}
       >
         <div>
           <h5 style={{ textAlign: "center", fontWeight: "600", marginBottom: "2rem" }}>
             Charme et Chic
           </h5>
+
           <nav className="nav flex-column">
             <Link className="nav-link" to="/admin" style={linkStyle}>Dashboard</Link>
             <Link className="nav-link" to="/admin/orders" style={linkStyle}>Órdenes</Link>
@@ -32,10 +37,7 @@ function AdminLayout() {
           </nav>
         </div>
 
-        <div>
-          <Link to="/" className="btn w-100 mb-2" style={btnOutline}>Ir a tienda</Link>
-          <button className="btn w-100" style={btnFilled}>Cerrar sesión</button>
-        </div>
+        {/* Botones eliminados */}
       </aside>
 
       <main style={{ flex: 1, padding: "2rem" }}>
@@ -51,21 +53,6 @@ const linkStyle = {
   textDecoration: "none",
   marginBottom: "0.8rem",
   transition: "all 0.2s",
-};
-
-const btnOutline = {
-  border: "1px solid #c9a66b",
-  color: "#3d3a2b",
-  backgroundColor: "transparent",
-  borderRadius: "8px",
-};
-
-const btnFilled = {
-  backgroundColor: "#c9a66b",
-  border: "none",
-  color: "#fff",
-  fontWeight: "500",
-  borderRadius: "8px",
 };
 
 // dashboard

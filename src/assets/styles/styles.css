@@ -525,3 +525,29 @@ footer {
 body {
     margin: 0;
 }
+
+.user-menu {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  display: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-item {
+  background: none;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  font-size: 14px;
+}
