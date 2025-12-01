@@ -9,30 +9,38 @@ export default function Login() {
     const [showPass, setShowPass] = useState(false);
 
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        setMsg("");
+   const onSubmit = async (e) => {
+    e.preventDefault();
+    setMsg("");
 
-        if (!/^\S+@\S+\.\S+$/.test(email)) return setMsg("Correo inválido");
-        if (pass.length < 6) return setMsg("La contraseña debe tener al menos 6 caracteres");
+    if (!/^\S+@\S+\.\S+$/.test(email)) return setMsg("Correo inválido");
+    if (pass.length < 6) return setMsg("La contraseña debe tener al menos 6 caracteres");
 
-        try {
-            const user = await loginUsuario(email, pass);
+    try {
+        const resp = await loginUsuario(email, pass);
 
-            // Guardar usuario en localStorage
-            localStorage.setItem("user", JSON.stringify(user));
+        // EXTRAER token + usuario real
+        const token = resp.token;
+        const usuario = resp.usuario;
 
-            // Redirección según rol
-            if (user.rol === "ADMIN") {
-                window.location.href = "/";
-            } else {
-                window.location.href = "/";
-            }
+        // GUARDAR EN LOCALSTORAGE
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(usuario));
 
-        } catch (err) {
-            setMsg("Credenciales incorrectas");
+        // Redirecciones
+        if (usuario.rol === "ADMIN") {
+            window.location.href = "/admin";
+        } else if (usuario.rol === "VENDEDOR") {
+            window.location.href = "/admin/orders";
+        } else {
+            window.location.href = "/";
         }
-    };
+
+    } catch (err) {
+        setMsg("Credenciales incorrectas");
+    }
+};
+
 
     return (
         <div className="seccion centrada">
