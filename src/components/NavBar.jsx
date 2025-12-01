@@ -1,5 +1,5 @@
 import { useCart } from "../context/CartContext";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
@@ -12,23 +12,29 @@ import carrito from "../assets/img/carrito-de-compras.png";
 import rueda from "../assets/img/engranaje.png";
 
 export default function NavBar() {
-  const active = ({ isActive }) =>
-    "nav-link fw-semibold" + (isActive ? " active" : "");
+  const navigate = useNavigate();
   const { cart } = useCart();
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  // Usuario actual
+  const user = JSON.parse(localStorage.getItem("user")) || null;
+  const isAdmin = user?.rol === "ADMIN";
+  const isVendedor = user?.rol === "VENDEDOR";
 
   const logout = () => {
     localStorage.removeItem("user");
-    window.location.href = "/";
+    navigate("/");
   };
+
+  const active = ({ isActive }) =>
+    "nav-link fw-semibold" + (isActive ? " active" : "");
 
   return (
     <>
       <Navbar.Toggle aria-controls="main-nav" />
       <Navbar.Collapse id="main-nav">
-        {/* Centro: menú */}
+        
+        {/* Centro: Menú principal */}
         <Nav className="mx-auto align-items-center gap-3">
           <Nav.Link as={NavLink} to="/" end className={active}>
             <img src={casa} alt="" width="20" height="20" />
@@ -51,20 +57,25 @@ export default function NavBar() {
           </Nav.Link>
         </Nav>
 
-        {/* Derecha */} 
+        {/* Derecha: Iconos */}
         <Nav className="ms-auto align-items-center gap-2">
 
-          {/* Ícono Admin SOLO si es ADMIN */}
-          {user?.rol === "ADMIN" && (
-            <Nav.Link as={Link} to="/admin" title="Panel Admin">
-              <img src={rueda} alt="admin" width="22" height="22" />
-            </Nav.Link>
-          )}
+          {/* Ícono Admin/Vendedor */}
+{(isAdmin || isVendedor) && (
+  <Nav.Link
+    as={Link}
+    to={isAdmin ? "/admin" : "/admin/orders"}   // 👈 ADMIN → /admin, VENDEDOR → /admin/orders
+    title="Panel Admin"
+  >
+    <img src={rueda} alt="admin" width="22" height="22" />
+  </Nav.Link>
+)}
 
-          {/* Usuario */}
+
+          {/* 👤 Usuario */}
           {!user ? (
             <Nav.Link as={Link} to="/login" title="Mi cuenta">
-              <img src={usuario} alt="" width="20" height="20" />
+              <img src={usuario} alt="login" width="20" height="20" />
             </Nav.Link>
           ) : (
             <div className="dropdown">
@@ -72,6 +83,7 @@ export default function NavBar() {
                 src={usuario}
                 width="20"
                 height="20"
+                alt="usuario"
                 style={{ cursor: "pointer" }}
               />
 
@@ -83,7 +95,7 @@ export default function NavBar() {
             </div>
           )}
 
-          {/* Buscar */}
+          {/* 🔍 Buscar */}
           <Button
             variant="link"
             className="p-2 btn-icono"
@@ -94,10 +106,9 @@ export default function NavBar() {
             <img src={buscar} alt="" width="20" height="20" />
           </Button>
 
-          {/* Carrito */}
+          {/* 🛒 Carrito */}
           <Nav.Link as={Link} to="/carrito" className="position-relative">
-            <img src={carrito} alt="" width="20" height="20" />
-
+            <img src={carrito} alt="carrito" width="20" height="20" />
             {totalItems > 0 && (
               <span
                 className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -113,21 +124,26 @@ export default function NavBar() {
       <style>{`
         .dropdown {
           position: relative;
+          display: inline-block;
         }
+
         .dropdown-content {
           display: none;
           position: absolute;
           right: 0;
           top: 120%;
-          background: white;
+          background: #ffffff;
           border: 1px solid #ddd;
           padding: 10px;
           border-radius: 6px;
-          z-index: 1000;
+          min-width: 120px;
+          z-index: 2000;
         }
+
         .dropdown:hover .dropdown-content {
           display: block;
         }
+
         .dropdown-item {
           background: none;
           border: none;
@@ -136,6 +152,10 @@ export default function NavBar() {
           text-align: left;
           width: 100%;
           padding: 5px 0;
+        }
+
+        .dropdown-item:hover {
+          opacity: 0.7;
         }
       `}</style>
     </>
